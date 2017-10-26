@@ -38,10 +38,15 @@ class Invitation {
 
     lookupEvent(evt) {
         debugger;
-        find the pair
-        write " "
-        invitation.changeText(VAR1, $(VAR2).val());
-        return 
+        let eventTarget = evt.target
+        let startChar = eventTarget.search("#");
+        let endChar = evt.target.search(".");
+        let targ = evt.target.substring(startChar, endChar);
+        // find the pair
+        
+        // write " "
+        // invitation.changeText(VAR1, $(VAR2).val());
+         
     }    
 
 
@@ -58,12 +63,22 @@ let idMapper = new Map([
     ['#date-input', ['dateEl', 'changeText']],
     ['#start-time', ['startEl', 'changeText']],
     ['#end-time', ['endEl', 'changeText']],
-    ['#location-input', ['locationEl']]
+    ['#location-input', ['locationEl', 'changeText']],
+    ['#description-input', ['descriptionEl', 'changeText']],
+    ['#font', ['container','changeCss']],
+    ['.blue', ['container', 'changeCss']],
+    ['.pink', ['container', 'changeCss']],
+    ['.yellow', ['container', 'changeCss']],
+    ['.white', ['container', 'changeCss']],
+    ['#dog', ['imageEl', 'changeAttr' ]],
+    ['#unicorn', ['imageEl', 'changeAttr' ]],
+    ['#bday', ['imageEl', 'changeAttr' ]]
     ])
 
 // Add event listeners
 
-$('.input-listen').on('change', invitation.lookupEvent);
+$('.input-listen').on('keyup', invitation.lookupEvent);
+$('.input-listen').on('click', invitation.lookupEvent);
 
 
 $('#title-input').on('keyup', function() {
