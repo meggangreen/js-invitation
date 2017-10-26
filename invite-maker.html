@@ -1,0 +1,65 @@
+<html>
+<head>
+  <title>Invitation Designer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="static/invitestyle.css"></link>
+</head>
+<body>
+  <div class="container">
+    <h1>Make Your Invitation</h1>
+    <div class="row">
+      <div class="selections col-xs-6">
+
+          <h3>Details</h3>
+          <p>Title: <input type="text" id="title-input" class="input-listen"></p>
+          <p>Date: <input type="date" id="date-input" class="input-listen"></p>
+          <p>Start: <input type="time" id="start-time" class="input-listen"></p>
+          <p>End: <input type="time" id="end-time" class="input-listen"></p>
+          <p>Location: <input type="text" id="location-input" class="input-listen"></p>
+          <p>Description:<br> 
+            <textarea rows="4" cols="100" id="description-input" class="input-listen"></textarea>
+          </p>
+
+          <h3>Font</h3>
+            <select id="font" class="input-listen">
+              <option value="" disabled selected>Select a font</option>
+              <option value="Comic Sans MS">Comic Sans</option>
+              <option value="monospace">Monospace</option>
+              <option value="sans-serif">Sans Serif</option>
+              <option value="cursive">Cursive</option>
+            </select>
+
+          <h3>Background Color</h3>
+          <button class="color-btn blue input-listen" data-color="#b7f4ff">Blue</button>
+          <button class="color-btn pink input-listen" data-color="#ffc6ec">Pink</button>
+          <button class="color-btn yellow input-listen" data-color="#fcf69f"> Yellow</button>
+          <button class="color-btn white input-listen" data-color="white">White</button>
+
+          <h3>Image</h3>
+              <input type="radio" class="image-input" value="images/dog.jpg" id="dog">
+                <label for="dog">
+                  <img class="thumbnail input-listen" src="images/dog.jpg">
+                </label>
+              <input type="radio" class="image-input" value="images/unicorn.jpg" id="unicorn">
+                <label for="unicorn">
+                  <img class="thumbnail input-listen" src="images/unicorn.jpg"> 
+                </label>
+              <input type="radio" class="image-input" value="images/birthdays.jpg" id="bday">
+              <label for="bday">
+                <img class="thumbnail input-listen" src="images/birthdays.jpg">
+              </label>
+
+      </div>
+      <div class=" col-xs-6">
+        <h3>Your Invitation</h3>
+        <div id="invite-display">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+crossorigin="anonymous"></script>
+  <script type="text/javascript" src="invite.js"></script>
+</body>
+</html>

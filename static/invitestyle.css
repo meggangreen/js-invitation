@@ -1,0 +1,65 @@
+
+h1  {
+  text-align: center;
+  margin-bottom: 20px
+}
+
+/* Invitation */
+#invite-display {
+  border: solid black 2px;
+  padding: 30px;
+  width: 100%;
+  min-height: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 15pt;
+}
+#image {
+  height: 200px;
+  float: right;
+}
+textarea {
+  font-size: 12pt;
+}
+.directions {
+  display: none;
+}
+
+/* Input Form */
+input, select, textarea {
+  border-radius: 5px;
+  padding: 5px;
+  width: 50%;
+  font-size: 14pt;
+}
+
+button {
+  padding: 20px;
+  border-radius: 5px;
+  margin-left: 20px;
+  font-size: 15pt;
+}
+/* Color buttons */
+.blue {
+  background-color: #b7f4ff;
+}
+.pink {
+  background-color: #ffc6ec;
+}
+.yellow {
+  background-color: #fcf69f;
+}
+.white {
+  background-color: white;
+}
+
+/* Image choices */
+.thumbnail {
+  height: 100px;
+}
+input[type="radio"] {
+display: none;
+}
+
+
+
