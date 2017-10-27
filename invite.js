@@ -1,5 +1,10 @@
 "use strict";
 
+// Meggan and Marie had to make several changes to the html file to make
+// this work. Major changes: ensuring that every input had 'class="input-listen"',
+// an id (which now can't change), and a value (especially where button color
+// was listed as 'data-color'). Not elegant, but stubborn ;)
+
 class Invitation {
 
     constructor(displayElement){
@@ -22,9 +27,67 @@ class Invitation {
         this.locationEl = displayElement.children("p#location");
         this.descriptionEl = displayElement.children("p#description");
 
-    }
+    } // end constructor
 
-    changeText(marker, newText) {
+    lookupEvent(evt) {
+        let chgID = "#" + evt.target.id.toString();
+        let chgVal = evt.target.value.toString();
+
+        // exit if chgID not in idMapper
+        if ( !idMapper.has(chgID) ) { return; }
+        
+        let chgEl = idMapper.get(chgID)[0];
+        let chgProp = idMapper.get(chgID)[1];
+        let chgFunc = idMapper.get(chgID)[2];
+
+        // 'this' is not the invitation
+        if ( chgFunc === 'changeText' ) {
+            invitation[chgEl].text(chgVal);
+        } else if ( chgFunc === 'changeCss' ) {
+            invitation[chgEl].css(chgProp, chgVal);
+        } else if ( chgFunc === 'changeAttr' ) {
+            invitation[chgEl].attr(chgProp, chgVal);
+        } // end if         
+    } // end lookupEvent    
+
+} // end Invitation
+
+
+// PART 2:
+
+// Create your invitation object
+let invitation =  new Invitation($("#invite-display"));
+let idMapper = new Map([
+    //[#, El, func]
+    ['#title-input', ['titleEl', , 'changeText']],
+    ['#date-input', ['dateEl', , 'changeText']],
+    ['#start-time', ['startEl', , 'changeText']],
+    ['#end-time', ['endEl', , 'changeText']],
+    ['#location-input', ['locationEl', , 'changeText']],
+    ['#description-input', ['descriptionEl', , 'changeText']],
+    ['#font', ['container', 'font-family','changeCss']],
+    ['#blue', ['container', 'background-color', 'changeCss']],
+    ['#pink', ['container', 'background-color', 'changeCss']],
+    ['#yellow', ['container', 'background-color', 'changeCss']],
+    ['#white', ['container', 'background-color', 'changeCss']],
+    ['#dog', ['imageEl', 'src', 'changeAttr' ]],
+    ['#unicorn', ['imageEl', 'src', 'changeAttr' ]],
+    ['#bday', ['imageEl', 'src', 'changeAttr' ]]
+    ])
+
+// Add event listeners
+
+$('.input-listen').on('keyup', invitation.lookupEvent);
+$('.input-listen').on('click', invitation.lookupEvent);
+
+
+
+/*********************************
+        Intermediary Code
+**********************************/
+
+/*
+    changeText(marker, newValue) {
         this[marker].text(newText);
     }
 
@@ -36,79 +99,6 @@ class Invitation {
         this[marker].attr(attribute, newValue);
     }
 
-    lookupEvent(evt) {
-        debugger;
-        let eventTarget = evt.target
-        let startChar = eventTarget.search("#");
-        let endChar = evt.target.search(".");
-        let targ = evt.target.substring(startChar, endChar);
-        // find the pair
-        
-        // write " "
-        // invitation.changeText(VAR1, $(VAR2).val());
-         
-    }    
-
-
-}
-
-
-// PART 2:
-
-// Create your invitation object
-let invitation =  new Invitation($("#invite-display"));
-let idMapper = new Map([
-    //[#, El, func]
-    ['#title-input', ['titleEl', 'changeText']],
-    ['#date-input', ['dateEl', 'changeText']],
-    ['#start-time', ['startEl', 'changeText']],
-    ['#end-time', ['endEl', 'changeText']],
-    ['#location-input', ['locationEl', 'changeText']],
-    ['#description-input', ['descriptionEl', 'changeText']],
-    ['#font', ['container','changeCss']],
-    ['.blue', ['container', 'changeCss']],
-    ['.pink', ['container', 'changeCss']],
-    ['.yellow', ['container', 'changeCss']],
-    ['.white', ['container', 'changeCss']],
-    ['#dog', ['imageEl', 'changeAttr' ]],
-    ['#unicorn', ['imageEl', 'changeAttr' ]],
-    ['#bday', ['imageEl', 'changeAttr' ]]
-    ])
-
-// Add event listeners
-
-$('.input-listen').on('keyup', invitation.lookupEvent);
-$('.input-listen').on('click', invitation.lookupEvent);
-
-
-$('#title-input').on('keyup', function() {
-    invitation.changeText('titleEl', $('#title-input').val());
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
     changeTitle(newTitle){
         this.titleEl.text(newTitle);
     }
@@ -145,4 +135,9 @@ $('#title-input').on('keyup', function() {
     changeDescription(newDescription) {
         this.descriptionEl.text(newDescription);
     }
+
+    $('#title-input').on('keyup', function() {
+        invitation.changeText('titleEl', $('#title-input').val());
+    })
+
     */
